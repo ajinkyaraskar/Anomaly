@@ -5,8 +5,14 @@ import pickle
 import xgboost as xgb
 import lime.lime_tabular
 from sklearn.preprocessing import StandardScaler
-from openai import Completion  # For LLM
+# from openai import Completion  # For LLM
 import numpy as np
+
+
+from openai import AzureOpenAI
+import dotenv
+
+dotenv.load_dotenv()
 
 print('-'*50,'imported')
 # Load the XGBoost model
