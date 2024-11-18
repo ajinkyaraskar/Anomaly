@@ -1,6 +1,0 @@
-OPENAI_API_TYPE="azure"
-AZURE_ENDPOINT="https://nitoropenai.openai.azure.com/"
-OPENAI_API_VERSION="2023-03-15-preview"
-OPENAI_API_KEY="78d406f975874c20ac2298c6d83e2f7d"
-DEPLOYMENT_NAME="gpt-35-turbo"
-GOOGLE_API_KEY='AIzaSyDtEpMkl1QIEb9vuC6VVbMLcwncD7DzDYI'
