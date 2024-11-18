@@ -10,7 +10,7 @@ import numpy as np
 
 print('-'*50,'imported')
 # Load the XGBoost model
-with open("xgboost_model.pkl", "rb") as f:
+with open("xgb_model.pkl", "rb") as f:
     model = pickle.load(f)
 
 # Load a sample dataset structure (to ensure preprocessing compatibility)
