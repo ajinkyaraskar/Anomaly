@@ -22,10 +22,10 @@ with open("xgb_model.pkl", "rb") as f:
 # Load a sample dataset structure (to ensure preprocessing compatibility)
 sample_data = pd.read_csv("sample_data.csv")  # This should contain column names and preprocessing logic
 
-# Function for LLM integration
-def get_completion(prompt):
-    # Add your API key and logic for GPT-like models
-    return Completion.create(prompt=prompt, engine="text-davinci-003", max_tokens=150)["choices"][0]["text"]
+# # Function for LLM integration
+# def get_completion(prompt):
+#     # Add your API key and logic for GPT-like models
+#     return Completion.create(prompt=prompt, engine="text-davinci-003", max_tokens=150)["choices"][0]["text"]
 
 # Preprocessing function
 def preprocess_data(df, sample_df):
