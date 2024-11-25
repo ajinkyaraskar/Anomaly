@@ -1,4 +1,5 @@
 # pip install streamlit pandas numpy xgboost lime scikit-learn openai
+import os
 import streamlit as st
 import pandas as pd
 import pickle
@@ -15,13 +16,9 @@ dotenv.load_dotenv()
 
 from preprocess import preprocess_data
 
-print('-'*50,'imported')
-# Load the XGBoost model
-with open("xgb_model.pkl", "rb") as f:
-    model = pickle.load(f)
 
-with open('major_categories.pkl', 'rb') as file:
-    major_categories = pickle.load(file)
+model_path = "data\\xgb_model.pkl"
+test_data_path = "data\\sample_data.csv"
 
 required_cols = ['BeneID', 'ClaimID', 'ClaimStartDt', 'ClaimEndDt', 'Provider', 'InscClaimAmtReimbursed',
                 'AttendingPhysician', 'OperatingPhysician', 'OtherPhysician', 'ClmDiagnosisCode_1',
@@ -34,6 +31,11 @@ required_cols = ['BeneID', 'ClaimID', 'ClaimStartDt', 'ClaimEndDt', 'Provider', 
                 'IPAnnualDeductibleAmt', 'OPAnnualReimbursementAmt', 'OPAnnualDeductibleAmt'] 
                 #'PotentialFraud'
 
+
+# Load the XGBoost model
+with open(model_path, "rb") as f:
+    model = pickle.load(f)
+
 # Load a sample dataset structure (to ensure preprocessing compatibility)
 # sample_data = pd.read_csv("sample_data.csv")  # This should contain column names and preprocessing logic
 
@@ -42,24 +44,22 @@ required_cols = ['BeneID', 'ClaimID', 'ClaimStartDt', 'ClaimEndDt', 'Provider', 
 #     # Add your API key and logic for GPT-like models
 #     return Completion.create(prompt=prompt, engine="text-davinci-003", max_tokens=150)["choices"][0]["text"]
 
-
 # Streamlit App
 st.title("Fraud Detection Dashboard")
 
 # File Upload
 # uploaded_file = st.file_uploader("Upload your test data (CSV)", type=["csv"])
 # if uploaded_file:
-test_data = pd.read_csv("sample_data.csv",usecols=required_cols)
+test_data = pd.read_csv(test_data_path,usecols=required_cols)
 st.write("Uploaded Data:", test_data.head())
 
-preprocessed_data = preprocess_data(test_data)#, sample_data)
+# try:
+preprocessed_data, categorical_cols = preprocess_data(test_data) #, sample_data)
 
 # Preprocess the data
-try:
-    preprocessed_data = preprocess_data(test_data)#, sample_data)
-    st.success("Data preprocessed successfully!")
-except Exception as e:
-    st.error(f"Preprocessing error: {e}")
+st.success("Data preprocessed successfully!")
+# except Exception as e:
+#     st.error(f"Preprocessing error: {e}")
 
 # Model Predictions
 predictions = model.predict(preprocessed_data)
