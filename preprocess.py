@@ -56,7 +56,8 @@ class CustomPreprocessor(BaseEstimator, TransformerMixin):
         df[chronic_columns] = df[chronic_columns].replace(2, 0)
 
         # Replace 'RenalDiseaseIndicator' values
-        df['RenalDiseaseIndicator'] = df['RenalDiseaseIndicator'].replace({'Y': 1}).fillna(0)
+        # df['RenalDiseaseIndicator'] = df['RenalDiseaseIndicator'].replace({'Y': 1}).fillna(0)
+        df['RenalDiseaseIndicator'] = df['RenalDiseaseIndicator'].replace({'Y': 1, '0':0}).fillna(0)
 
         # Replace categorical values
         df['IPD_OPD'].replace({'IPD': 1, 'OPD': 0}, inplace=True)
@@ -84,7 +85,7 @@ class MeanEncodingTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X):
         X_transformed = X.copy()
         for col in self.columns_to_encode:
-            print(self.mean_encodings[col])
+            # print(self.mean_encodings[col])
             X_transformed[col] = X[col].map(self.mean_encodings[col])
         return X_transformed
 
