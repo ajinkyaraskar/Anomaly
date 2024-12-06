@@ -1,0 +1,26 @@
+paths:
+  major_categories: 'data/major_categories.pkl'
+  target_mean_dict: 'data/target_mean_dict.pkl'
+  test_data: 'data/X_test_sample.csv'
+  train_data: 'data/X_train_sample.csv'
+  pipeline: 'fraud_detection_pipeline.pkl'
+
+
+columns:
+  target: 'PotentialFraud'
+  required: ['BeneID', 'ClaimID', 'ClaimStartDt', 'ClaimEndDt', 'Provider', 'InscClaimAmtReimbursed',
+                'AttendingPhysician', 'OperatingPhysician', 'OtherPhysician', 'ClmDiagnosisCode_1',
+                'DeductibleAmtPaid', 'IPD_OPD', 'AdmissionDt', 'DischargeDt', 'DOB', 'DOD',
+                'Gender', 'Race', 'RenalDiseaseIndicator', 'State', 'County',
+                'ChronicCond_Alzheimer', 'ChronicCond_Heartfailure', 'ChronicCond_KidneyDisease',
+                'ChronicCond_Cancer', 'ChronicCond_ObstrPulmonary', 'ChronicCond_Depression',
+                'ChronicCond_Diabetes', 'ChronicCond_IschemicHeart', 'ChronicCond_Osteoporasis',
+                'ChronicCond_rheumatoidarthritis', 'ChronicCond_stroke', 'IPAnnualReimbursementAmt',
+                'IPAnnualDeductibleAmt', 'OPAnnualReimbursementAmt', 'OPAnnualDeductibleAmt']
+  mean_encoding: ['AttendingPhysician','OperatingPhysician','OtherPhysician','ClmDiagnosisCode_1']
+  training: ['InscClaimAmtReimbursed', 'AttendingPhysician', 'OperatingPhysician', 'OtherPhysician', 'ClmDiagnosisCode_1', 'DeductibleAmtPaid', 'IPD_OPD',
+       'Gender', 'Race', 'RenalDiseaseIndicator', 'State', 'County', 'ChronicCond_Alzheimer', 'ChronicCond_Heartfailure',
+       'ChronicCond_KidneyDisease', 'ChronicCond_Cancer', 'ChronicCond_ObstrPulmonary', 'ChronicCond_Depression', 'ChronicCond_Diabetes', 'ChronicCond_IschemicHeart',
+       'ChronicCond_Osteoporasis', 'ChronicCond_rheumatoidarthritis', 'ChronicCond_stroke', 'IPAnnualReimbursementAmt', 'IPAnnualDeductibleAmt', 'OPAnnualReimbursementAmt',
+       'OPAnnualDeductibleAmt', 'NoOfDays_Admitted', 'Age', 'WhetherDead']
+  to_impute: ['DeductibleAmtPaid'] 
